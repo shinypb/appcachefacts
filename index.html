@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Appcache Facts</title>
+    <style>
+      body {
+        font: 16px/1em 'gill sans', helvetica, sans-serif;
+        margin: 1em auto;
+        width: 700px;
+      }
+      
+      h1#title, #footer, #facts .details {
+        border-color: #9bf;
+        border-style: solid;
+        border-width: 0;
+      }
+      
+      h1#title {
+        border-bottom-width: 1px;
+        padding-bottom: 0.5em;
+        text-align: center;
+      }
+      
+      #footer {
+        border-top-width: 1px;
+        text-align: center;
+      }
+      
+      pre, code {
+        background: #ddd;
+        font: 0.9em/1em courier, monospace;
+      }
+      
+      #facts .details pre, #facts .details code {
+        background: #e1e3e6;
+      }
+      
+      pre {
+        border-radius: 1em;
+        padding: 1em;
+        margin: 0;
+      }
+
+      #facts {
+
+      }
+      
+      li {
+        margin-top: 1em;
+      }
+      
+      li:first-child {
+        margin-top: 0;
+      }
+
+      #facts li:before {
+        content: 'Fact: ';
+        font-weight: bold;
+      }
+      
+      #facts .details {
+        background: #eff4ff;
+        border-left-width: 1px;
+        padding: 1em;
+      }
+      
+      #facts .details p:first-child {
+        margin-top: 0;
+      }
+      
+      #facts .details p:last-child {
+        margin-bottom: 0;
+      }
+      
+      em {
+        color: red;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1 id="title">Appcache Facts</h1>
+    <p>The application cache is a poorly understood part of the HTML5 specification with a lot of potential. Let's get rid of
+       some of the confusion and make the web a faster place.</p>
+
+    <section id="facts">
+      <ul>
+        <li>Appcache was intended to let your web app run offline, no Internet connection required, but it can also be used online to dramatically decrease load times.</li>
+        <li>The manifest file must be served with the MIME type <code>text/cache-manifest</code>.</li>
+        <li>
+          Appcache manifests have three optional sections: <code>CACHE</code>, <code>NETWORK</code>, and <code>FALLBACK</code>.
+          <div class="details">
+            <p>The <code>CACHE</code> section lists all resources that should be downloaded and stored locally. The browser will
+            begin downloading these in the background as soon as the page has loaded. If any are already in the browser's cache,
+            they will not be downloaded again separately.</p>
+            <p>The <code>NETWORK</code> section lists all URLs that may be loaded over the Internet. If your application includes
+            any API calls, make sure to enumerate them here. Note that this is a list of URL <strong>prefixes</strong>, so if
+            all of your network calls begin with http://example.com/api/, that's all you need to include.</p>
+            <p>The <code>FALLBACK</code> section lists replacements for network URLs to be used when the browser is offline.
+               <em>TBD</em> do those fallback URLs have to be included in the CACHE section, or do they just work?</p>
+          </div>
+        </li>
+        <li>
+          Over SSL, all resources in the manifest must respect the same-origin policy.
+          <div class="details">
+            <p>That is, all paths must be relative, or point to resources on the same host and port as the current page.</p>
+          </div>
+        </li>
+        <li>Any changes made to the manifest file will cause the browser to update the application cache.
+          <div class="details">
+            <p>If your resources are going to be located at the same URL even when you upload a new version of them,
+            add a comment to the manifest file with a changing version number in it.</p>
+            <p><pre>CACHE MANIFEST
+# version 1
+CACHE
+/logo.png
+...</pre></p>
+            <p>Any line that starts with a <code>#</code> is a comment and will be ignored, but is sufficient to trigger
+            an update when it changes.</p>
+          </div>
+        </li>
+        <li>Any changes made to the manifest or any of its files will not take effect until the next
+            page load.
+            <div class="details">
+              <p>This is because once the page has been appcached, it is immediately served from that
+              cache the next time the user returns. The browser then checks the manifest for any changes
+              and downloads any required files in the background. The newest version will be available
+              on the next load of the page.</p>
+              <p>If you'd like, you can listen for the <code>updateready</code> event to detect this and prompt the
+              user to reload the page:</p>
+              <p><pre>applicationCache.addEventListener('updateready', function() {
+  if(confirm('An update is available. Reload now?')) {
+    window.location.reload();
+  }
+}</pre>
+              <p>For most applications, however, temporarily using the previous version of the code is probably acceptable.</p>
+            </div>
+        </li>
+        <li>
+          If any of the files mentioned in the <code>CACHE</code> section can't be retrieved, the entire cache will be disregarded.
+          <div class="details">
+            <p>All resources must return with a <code>HTTP/1.1 200 OK</code> response. If any do not, the entire cache will be ignored.</p>
+            <p>The next time the browser returns to your page, it will try to use the manifest again as if it was the first time it
+            encountered it.</p>
+          </div>
+        </li>
+        <li>If the manifest file itself can't be retrieved, the cache will ignored and all cached data associated with it will be disregarded.</li>
+        <li>
+          In Firefox, all files must be served with an <code>Expires</code> header.
+          <div class="details">
+            <p>Oddly enough, it doesn't matter if the Expires header is in the past or the future &mdash; it just has to be there.</p>
+          </div>
+          
+        </li>
+        <li>Regardless of whether you include the address of the current page in the manifest, it will be cached.</li>
+        <li>In Firefox, any resources served with <code>Cache-control: <strong>no-store</strong></code> will not be cached, even if they're explicitly included in the manifest.</li>
+      </ul>
+    </section>
+    
+    <section id="sample">
+      <h2>Resources</h2>
+      <p>These resources have been invaluable while working with the appcache:</p>
+      <ul>
+        <li>Dive Into HTML5 &ndash; <a href="#">Let's Take This Offline</a></li>
+        <li>Google Code blog &ndash; <a href="http://googlecode.blogspot.com/2009/04/gmail-for-mobile-html5-series-using.html">Using AppCache to Launch Offline</a></a></li>
+        <li>HTML5 Rocks &ndash; <a href="http://www.html5rocks.com/tutorials/appcache/beginner/">A Beginner's Guide to Using the Application Cache</a></li>
+        <li>MDN Doc Center &ndash; <a href="https://developer.mozilla.org/en/offline_resources_in_firefox">Offline resources in Firefox</a></li>
+        <li>Safari Developer Library &ndash; <a href="http://developer.apple.com/library/safari/#documentation/appleapplications/reference/SafariWebContent/Client-SideStorage/Client-SideStorage.html">Storing Data on the Client</a></li>
+      </ul>
+    </section>
+
+    <section id="footer">
+      <p>&copy; 2011 <a href="http://twitter.com/shinypb">Mark Christian</a> &amp; <a href="http://twitter.com/ded">Dustin Diaz</a>.</p>
+    </section>
+  </body>
+</html>
