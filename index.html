@@ -8,50 +8,52 @@
         margin: 1em auto;
         width: 700px;
       }
-      
+
       h1#title, #footer, #facts .details {
         border-color: #9bf;
         border-style: solid;
         border-width: 0;
       }
+
+      h1#title, #footer {
+        position: fixed;
+        width: 710px;
+      }
+
       h1#title {
         border-bottom-width: 1px;
         padding-bottom: 0.5em;
         text-align: center;
-        position: fixed;
         top: 0;
-        width: 700px;
         background-color: #fff;
         margin: 0;
         padding: 20px 0;
       }
-      
+
       p#tagline {
         margin-top: 70px;
       }
-      
+
       #sample {
         margin-bottom: 75px;
       }
-      
+
       #footer {
         border-top-width: 1px;
         text-align: center;
-        position: fixed;
         bottom: 0;
         background-color: #fff;
-        width: 700px;
       }
-      
+
       pre, code {
         background: #ddd;
         font: 0.9em/1em courier, monospace;
       }
-      
+
       #facts .details pre, #facts .details code {
         background: #e1e3e6;
       }
-      
+
       pre {
         border-radius: 1em;
         padding: 1em;
@@ -61,11 +63,11 @@
       #facts {
 
       }
-      
+
       li {
         margin-top: 1em;
       }
-      
+
       li:first-child {
         margin-top: 0;
       }
@@ -74,7 +76,7 @@
         content: 'Fact: ';
         font-weight: bold;
       }
-      
+
       #facts .details {
         background: #eff4ff;
         border-left-width: 1px;
@@ -83,15 +85,15 @@
         -webkit-border-radius: 5px;
         -webkit-box-shadow: 0 0 8px #ccc;
       }
-      
+
       #facts .details p:first-child {
         margin-top: 0;
       }
-      
+
       #facts .details p:last-child {
         margin-bottom: 0;
       }
-      
+
       em {
         color: red;
       }
@@ -127,8 +129,8 @@
             <p>The <code>NETWORK</code> section lists all URLs that may be loaded over the Internet. If your application includes
             any API calls, make sure to enumerate them here. Note that this is a list of URL <strong>prefixes</strong>, so if
             all of your network calls begin with http://example.com/api/, that's all you need to include.</p>
-            <p>The <code>FALLBACK</code> section lists replacements for network URLs to be used when the browser is offline.
-               <em>TBD</em> do those fallback URLs have to be included in the CACHE section, or do they just work?</p>
+            <p>The <code>FALLBACK</code> section lists replacements for network URLs to be used when the browser is offline or the
+            remote server is unavailable.</p>
           </div>
         </li>
         <li>
@@ -159,10 +161,11 @@ CACHE
               on the next load of the page.</p>
               <p>If you'd like, you can listen for the <code>updateready</code> event to detect this and prompt the
               user to reload the page:</p>
-              <p><pre>applicationCache &amp;&amp; 
+              <p><pre>if(applicationCache) {
   applicationCache.addEventListener('updateready', function() {
-  if (confirm('An update is available. Reload now?')) {
-    window.location.reload();
+    if (confirm('An update is available. Reload now?')) {
+      window.location.reload();
+    }
   }
 }</pre>
               <p>For most applications, however, temporarily using the previous version of the code is probably acceptable.</p>
@@ -177,18 +180,11 @@ CACHE
           </div>
         </li>
         <li>If the manifest file itself can't be retrieved, the cache will ignored and all cached data associated with it will be disregarded.</li>
-        <li>
-          In Firefox, all files must be served with an <code>Expires</code> header.
-          <div class="details">
-            <p>Oddly enough, it doesn't matter if the Expires header is in the past or the future &mdash; it just has to be there.</p>
-          </div>
-          
-        </li>
         <li>Regardless of whether you include the address of the current page in the manifest, it will be cached.</li>
         <li>In Firefox, any resources served with <code>Cache-control: <strong>no-store</strong></code> will not be cached, even if they're explicitly included in the manifest.</li>
       </ul>
     </section>
-    
+
     <section id="sample">
       <h2>Resources</h2>
       <p>These resources have been invaluable while working with the appcache:</p>
