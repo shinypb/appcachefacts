@@ -14,16 +14,33 @@
         border-style: solid;
         border-width: 0;
       }
-      
       h1#title {
         border-bottom-width: 1px;
         padding-bottom: 0.5em;
         text-align: center;
+        position: fixed;
+        top: 0;
+        width: 700px;
+        background-color: #fff;
+        margin: 0;
+        padding: 20px 0;
+      }
+      
+      p#tagline {
+        margin-top: 70px;
+      }
+      
+      #sample {
+        margin-bottom: 75px;
       }
       
       #footer {
         border-top-width: 1px;
         text-align: center;
+        position: fixed;
+        bottom: 0;
+        background-color: #fff;
+        width: 700px;
       }
       
       pre, code {
@@ -62,6 +79,9 @@
         background: #eff4ff;
         border-left-width: 1px;
         padding: 1em;
+        margin: 12px 0;
+        -webkit-border-radius: 5px;
+        -webkit-box-shadow: 0 0 8px #ccc;
       }
       
       #facts .details p:first-child {
@@ -91,7 +111,7 @@
   </head>
   <body>
     <h1 id="title">Appcache Facts</h1>
-    <p>The application cache is a poorly understood part of the HTML5 specification with a lot of potential. Let's get rid of
+    <p id="tagline">The application cache is a poorly understood part of the HTML5 specification with a lot of potential. Let's get rid of
        some of the confusion and make the web a faster place.</p>
 
     <section id="facts">
@@ -139,8 +159,9 @@ CACHE
               on the next load of the page.</p>
               <p>If you'd like, you can listen for the <code>updateready</code> event to detect this and prompt the
               user to reload the page:</p>
-              <p><pre>applicationCache.addEventListener('updateready', function() {
-  if(confirm('An update is available. Reload now?')) {
+              <p><pre>applicationCache &amp;&amp; 
+  applicationCache.addEventListener('updateready', function() {
+  if (confirm('An update is available. Reload now?')) {
     window.location.reload();
   }
 }</pre>
