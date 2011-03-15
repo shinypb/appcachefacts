@@ -174,7 +174,7 @@ CACHE
         <li>
           If any of the files mentioned in the <code>CACHE</code> section can't be retrieved, the entire cache will be disregarded.
           <div class="details">
-            <p>All resources must return with a <code>HTTP/1.1 200 OK</code> response. If any do not, the entire cache will be ignored.</p>
+            <p>All resources must successfully. If any do not &mdash; returning a 404 or 500, for example &mdash; the entire cache will be ignored.</p>
             <p>The next time the browser returns to your page, it will try to use the manifest again as if it was the first time it
             encountered it.</p>
           </div>
