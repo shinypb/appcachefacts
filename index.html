@@ -129,7 +129,7 @@
             <p>The <code>NETWORK</code> section lists all URLs that may be loaded over the Internet. If your application includes
             any API calls, make sure to enumerate them here. Note that this is a list of URL <strong>prefixes</strong>, so if
             all of your network calls begin with http://example.com/api/, that's all you need to include.</p>
-            <p>If you want to allow arbitrary URLs to be accessed (scripts, stylesheets, API calls, anything), include <code>http://*</code> and <code>https://*</code> in this section.</p>
+            <p>If you want to allow arbitrary URLs to be accessed (scripts, stylesheets, API calls, anything), include <code>*</code>, <code>http://*</code> and <code>https://*</code> in this section. (Chrome and Safari respect the <code>*</code>; Firefox needs the <code>http://*</code> and <code>https://*</code>.)</p>
             <p>The <code>FALLBACK</code> section lists replacements for network URLs to be used when the browser is offline or the
             remote server is unavailable.</p>
           </div>
@@ -201,7 +201,7 @@ CACHE
 
     <section id="footer">
       <p>
-        &copy; 2011 <a href="http://twitter.com/shinypb">Mark Christian</a> &amp; <a href="http://twitter.com/ded">Dustin Diaz</a>. License: <a href="http://creativecommons.org/licenses/by/3.0/">CC Attribution 3.0</a>
+        &copy; 2011 <a href="http://twitter.com/shinypb">Mark Christian</a> &amp; <a href="http://twitter.com/ded">Dustin Diaz</a>. License: <a href="http://creativecommons.org/licenses/by/3.0/">CC Attribution 3.0</a>. Patches welcome on <a href="https://github.com/shinyplasticbag/appcachefacts">GitHub</a>.
       </p>
     </section>
   </body>
