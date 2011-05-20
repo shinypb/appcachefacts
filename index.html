@@ -119,7 +119,11 @@
     <section id="facts">
       <ul>
         <li>Appcache was intended to let your web app run offline, no Internet connection required, but it can also be used online to dramatically decrease load times.</li>
-        <li>The manifest file must be served with the MIME type <code>text/cache-manifest</code>.</li>
+        <li>The manifest file must be served with the MIME type <code>text/cache-manifest</code>.
+          <div class="details">
+            <p>The suggested file extension for manifests is <code>.appcache</code>.</p>
+          </div>
+        </li>
         <li>
           Appcache manifests have three optional sections: <code>CACHE</code>, <code>NETWORK</code>, and <code>FALLBACK</code>.
           <div class="details">
