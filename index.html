@@ -138,6 +138,7 @@
           Over SSL, all resources in the manifest must respect the same-origin policy.
           <div class="details">
             <p>That is, all paths must be relative, or point to resources on the same host and port as the current page.</p>
+            <p>The exception is Google Chrome, which doesn't follow the <a href="http://www.w3.org/TR/html5/offline.html">specification</a> in this regard. Over SSL, Chrome will load resources from different origins so long as they are still served over SSL.</p>
           </div>
         </li>
         <li>Any changes made to the manifest file will cause the browser to update the application cache.
