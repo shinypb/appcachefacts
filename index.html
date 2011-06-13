@@ -187,7 +187,7 @@ CACHE
         </li>
         <li>If the manifest file itself can't be retrieved, the cache will ignored and all cached data associated with it will be disregarded.</li>
         <li>Regardless of whether you include the address of the current page in the manifest, it will be cached.</li>
-        <li>In Chrome, you can inspect the global appcache by visiting <code>chrome://appcache-internals/</code>. You can retrieve details of individual appcaches like size, updated time, etc. or Remove ones you don't want (useful during development).</li>
+        <li>In Chrome, you can see information about appcached sites by visiting <code>chrome://appcache-internals/</code>. This allows you to see which sites have appcached, when they were last modified, and how much space they're using. You can also remove appcaches here.</li>
         <li>In Firefox, any resources served with <code>Cache-control: <strong>no-store</strong></code> will not be cached, even if they're explicitly included in the manifest.</li>
         <li>Firefox will always ask the user for permission before caching a site for the first time.</li>
       </ul>
