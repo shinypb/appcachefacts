@@ -139,6 +139,12 @@
           </div>
         </li>
         <li>
+          If your site is using an appcache and makes a request for an asset that isn't accounted for in the manifest, the browser will fail to load the asset.
+          <div class="details">
+            <p>If expect to mix offline assets and online assets (like Google Analytics), you <strong>must</strong> include a <code>NETWORK</code> white list as described above.</p>
+          </div>
+        </li>
+        <li>
           Over SSL, all resources in the manifest must respect the same-origin policy.
           <div class="details">
             <p>That is, all paths must be relative, or point to resources on the same host and port as the current page.</p>
