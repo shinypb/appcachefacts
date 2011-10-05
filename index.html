@@ -157,7 +157,11 @@ CACHE
             <p>Any line that starts with a <code>#</code> is a comment and will be ignored, but is sufficient to trigger an update when it changes.</p>
           </div>
         </li>
-        <li>When updating an existing appcache, the browser sends standard If-Modified-Since headers, so it skips re-downloading files that have not changed.</li>
+          <li>When updating an existing appcache, the browser sends standard If-Modified-Since headers, so it skips re-downloading files that have not changed.
+            <div class="details">
+              If you've just <code>touch</code>ed the manifest file, the browser won't bother to re-check the assets &mdash; the contents of the manifest file must change somehow. Modifying a comment is good enough, which is why we recommend having a <code># version</code> line.
+            </div>
+          </li>
         <li>Any changes made to the manifest or any of its files will not take effect until the next
             page load.
             <div class="details">
