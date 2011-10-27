@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Appcache Facts</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <style>
+      body {
+        font: 16px/1em 'gill sans', helvetica, sans-serif;
+        margin: 1em auto;
+        width: 700px;
+      }
+
+      h1#title, #footer, #facts .details {
+        border-color: #9bf;
+        border-style: solid;
+        border-width: 0;
+      }
+
+      h1#title, #footer {
+        position: fixed;
+        width: 710px;
+      }
+
+      h1#title {
+        border-bottom-width: 1px;
+        padding-bottom: 0.5em;
+        text-align: center;
+        top: 0;
+        background-color: #fff;
+        margin: 0;
+        padding: 20px 0;
+      }
+
+      p#tagline {
+        margin-top: 70px;
+      }
+
+      #sample {
+        margin-bottom: 75px;
+      }
+
+      #footer {
+        border-top-width: 1px;
+        text-align: center;
+        bottom: 0;
+        background-color: #fff;
+      }
+
+      pre, code {
+        background: #ddd;
+        font: 0.9em/1em courier, monospace;
+      }
+
+      #facts .details pre, #facts .details code {
+        background: #e1e3e6;
+      }
+
+      pre {
+        border-radius: 1em;
+        padding: 1em;
+        margin: 0;
+      }
+
+      #facts {
+
+      }
+
+      li {
+        margin-top: 1em;
+      }
+
+      li:first-child {
+        margin-top: 0;
+      }
+
+      #facts li:before {
+        content: 'Fato: ';
+        font-weight: bold;
+      }
+
+      #facts .details {
+        background: #eff4ff;
+        border-left-width: 1px;
+        padding: 1em;
+        margin: 12px 0;
+        -webkit-border-radius: 5px;
+        -webkit-box-shadow: 0 0 8px #ccc;
+      }
+
+      #facts .details p:first-child {
+        margin-top: 0;
+      }
+
+      #facts .details p:last-child {
+        margin-bottom: 0;
+      }
+
+      em {
+        color: red;
+      }
+
+    </style>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-21977918-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <h1 id="title">Appcache Facts</h1>
+    <p id="tagline">O Application cache é uma parte com muito potencial mas pouco conhecida na especificação HTML5. Vamos acabar com essa confusão e fazer da web um lugar mais rápido.</p>
+
+    <section id="facts">
+      <ul>
+        <li>Appcache foi planejado para rodar sua web app offline, sem conexão a Internet, mas também pode ser usado on-line para diminuir drasticamente o tempo de carregamento.</li>
+        <li>O arquivo manifest precisa ser servido com o MIME type <code>text/cache-manifest</code>.
+          <div class="details">
+            <p>Por convenção, a extensão sugerida para o arquivo manifests é <code>.appcache</code>.</p>
+          </div>
+        </li>
+        <li>
+          O Appcache manifest possui três seções opcionais: <code>CACHE</code>, <code>NETWORK</code>, e <code>FALLBACK</code>.
+          <div class="details">
+            <p>A seção <code>CACHE</code> lista todos arquivos que devem armazenados localmente. O browser irá
+            começar o download destes arquivos em background assim que a página for solicitada. Se qualquer um destes arquivos já estiverem no cache,
+            então ele não fará o download novamente.</p>
+            <p>A seção <code>NETWORK</code> lista todas URLs que precisam ser carregadas via Internet. Se sua aplicação inclui chamadas a API externas, 
+			coloque as chamadas nesta seção. Note que isso é uma lista de URLs com <strong>prefixos</strong>, então se
+            todas suas chamadas começam com http://example.com/api/, isso é tudo que você precisa incluir.</p>
+            <p>Se você precisa permitir o acesso a URLs arbitrárias (scripts, stylesheets, chamadas a APIs, qualquer coisa), inclua um <code>*</code>, <code>http://*</code> e <code>https://*</code> nesta seção. (Google Chrome e Safari respeitam o <code>*</code>; O Firefox precisa do <code>http://*</code> e do <code>https://*</code>.)</p>
+            <p>A seção <code>FALLBACK</code> lista as substituições para URLs que devem ser usadas quando se está offline ou quando
+            o servidor está indisponível.</p>
+          </div>
+        </li>
+        <li>
+          Se estiver em uma conexão SSL, todos arquivos no manifest precisam respeitar a regra <i>same-origin policy</i>.
+          <div class="details">
+            <p>same-origin policy: Todos paths devem ser relativos, ou apontar para arquivos no mesmo host e porta da página atual.</p>
+            <p>O Google Chrome é a exceção que não segue a <a href="http://www.w3.org/TR/html5/offline.html">especificação</a> neste caso. Sobre conexão SSL, o Google Chrome carregará todos arquivos de origens diferentes enquando elas ainda continuam sendo servidas com SSL.</p>
+          </div>
+        </li>
+        <li>Qualquer mudança feita no arquivo manifest fará com que o browser atualize o application cache.
+          <div class="details">
+            <p>Se seus arquivos estão armazenados na mesma URL, mesmo quando você faz upload de uma nova versão deles,
+            por convenção, adicione um comentário no arquivo manifest com o número da versão, ou com a data/hora/segundo</p>
+            <p><pre>CACHE MANIFEST
+# version 1
+# 27/10/2011 12:08:05
+CACHE
+/logo.png
+...</pre></p>
+            <p>Qualquer linha que comece com <code>#</code> é um comentário e será ignorado, mas é suficiente para forçar a atualização do cache.</p>
+          </div>
+        </li>
+          <li>Quando está atualizando um appcache existente, o browser envia um header <i>If-Modified-Since</i>, isso evita o recarregamento dos arquivos que não foram atualizados.
+            <div class="details">
+              Se você apenas usou <code>touch</code> no arquivo manifest, o browser não se preocupa em verificar novamente &mdash; o conteúdo do manifest deve ser alterado. Modificar um comentário é suficiente, por isso recomendamos que você tenha uma linha com <code># version</code>.
+            </div>
+          </li>
+        <li>Qualquer alteração feita no manifest ou em qualquer um dos arquivos listados nele, não terão efeito até o próximo page load.
+            <div class="details">
+              <p>Isso porque uma vez que a página foi armazenada no cache, ela será imediatamente servida pelo
+              cache na próxima vez que o usuário retornar. O browser então verifica o manifest por qualquer alteração
+              e faz o download dos arquivos necessários em background. A nova versão estará disponível
+              na próxima vez que a página for carregada.</p>
+              <p>Se preferir, você pode adicionar um Event Lisntener <code>updateready</code> para detectar isso e perguntar ao usuário
+              se ele quer recarregar a página:</p>
+              <p><pre>if (window.applicationCache) {
+    applicationCache.addEventListener('updateready', function() {
+        if (confirm('Uma atualização está disponível. Recarregar?')) {
+            window.location.reload();
+        }
+    });
+}</pre>
+              <p>Para maioria das aplicações, entretanto, usar temporariamente uma versão anterior do código é provavelmente aceitável.</p>
+            </div>
+        </li>
+        <li>
+          Se qualquer arquivo listado na seção <code>CACHE</code> não puder ser carregado, todo o cache será desconsiderado.
+          <div class="details">
+            <p>Todos arquivos precisam retornar com sucesso. Se algum um não carregar &mdash; retornando http 404 ou 500, por exemplo &mdash; todo o cache será ignorado.</p>
+            <p>A próxima vez que o browser retornar para sua página, ele tentará usar o manifest novamente como se fosse a primeira vez.</p>
+          </div>
+        </li>
+        <li>Se o próprio arquivo manifest não for encontrado, o cache será ignorado e os dados associados ao cache serão desconsiderados.</li>
+        <li>Independente de você incluir o endereço da página atual no manifest, ela será armazenada no cache.</li>
+        <li>No Google Chrome, você pode ver as informações dos arquivos que estão no cache visitando <code>chrome://appcache-internals/</code>. Isso permite que você veja quais sites utilizam o Appcache, quando eles foram modificados, e quanto espaço estão utilizando. Você também pode remover o appcache.</li>
+        <li>No Firefox, todos arquivos servidos com <code>Cache-control: <strong>no-store</strong></code> não serão armazenados no cache, mesmo se se estiverem explícitos no manifest.</li>
+        <li>O Firefox sempre pedirá permissão ao usuário antes de armazenar arquivos no cache pela primeira vez.</li>
+      </ul>
+    </section>
+
+    <section id="sample">
+      <h2>Referências</h2>
+      <p>Essas referências foram de valor inestimável, enquanto trabalhamos com o appcache:</p>
+      <ul>
+        <li>Dive Into HTML5 &ndash; <a href="http://diveintohtml5.org/offline.html">Let's Take This Offline</a></li>
+        <li>Google Code blog &ndash; <a href="http://googlecode.blogspot.com/2009/04/gmail-for-mobile-html5-series-using.html">Using AppCache to Launch Offline</a></a></li>
+        <li>HTML5 Rocks &ndash; <a href="http://www.html5rocks.com/tutorials/appcache/beginner/">A Beginner's Guide to Using the Application Cache</a></li>
+        <li>MDN Doc Center &ndash; <a href="https://developer.mozilla.org/en/offline_resources_in_firefox">Offline resources in Firefox</a></li>
+        <li>Safari Developer Library &ndash; <a href="http://developer.apple.com/library/safari/#documentation/appleapplications/reference/SafariWebContent/Client-SideStorage/Client-SideStorage.html">Storing Data on the Client</a></li>
+        <li><a href="http://manifest-validator.com">Cache Manifest Validator</a> &ndash; Online validator, JSON(P) validation API and TextMate bundle</li>
+      </ul>
+    </section>
+
+    <section id="footer">
+      <p>
+        &copy; 2011 <a href="http://twitter.com/shinypb">Mark Christian</a> &amp; <a href="http://twitter.com/ded">Dustin Diaz</a>. License: <a href="http://creativecommons.org/licenses/by/3.0/">CC Attribution 3.0</a>. Patches welcome on <a href="https://github.com/shinyplasticbag/appcachefacts">GitHub</a>.
+      </p>
+    </section>
+  </body>
+</html>
