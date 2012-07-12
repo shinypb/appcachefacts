@@ -1,0 +1,149 @@
+<!doctype html>
+
+<html class="no-js" lang="en" manifest="manifest.appcache">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Home Page</title>
+		<meta name="description" content="AppCache Demo Page">
+		<meta name="author" content="Peter Lubbers (@peterlubbers), Kaazing">
+
+		<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0">
+
+		<!-- For all browsers -->
+		<link rel="stylesheet" href="css/style.css">
+
+		<!-- For iPhone 4 -->
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/h/apple-touch-icon.png">
+		<!-- For iPad 1-->
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/m/apple-touch-icon.png">
+		<!-- For iPhone 3G, iPod Touch and Android -->
+		<link rel="apple-touch-icon-precomposed" href="img/l/apple-touch-icon.png">
+
+	</head>
+
+	<body class="clearfix">
+
+		<header role="banner">
+	    <h1>Application<wbr>Cache Demo</h1>
+        <nav>
+        <h3>
+          <a href="#">Home</a>
+          <a href="./cache.html">Cache</a>
+          <a href="./network.html">Network</a>
+        </h3>
+      </nav>
+   </header>
+
+	<h4>AppCache Rocks!</h4>
+
+	<div role="main">
+		  <figure >
+		      <img src="img/tbservers.png"  
+			       alt="Green Tumbeast with a sign that reads Network">
+			  <figcaption>This is the network page</figcaption>
+	      </figure>
+	      <br>
+	      <h3>Application<wbr>Cache Under the Hood</h3>
+		  <div class="center" class="clearfix">
+			<article class="events">
+			  <div id="info"></div>
+	        </article>
+	      </div>
+	</div>
+
+	<footer >
+	  <small>License: <a href="http://creativecommons.org/licenses/by/3.0/">CC Attribution 3.0</a> Created by  
+		              <a href="https://twitter.com/#!/peterlubbers">@peterlubbers</a> <br>
+		              Back to <a href="http://appcachefacts.info">appcachefacts.info</a>
+      </small>
+	</footer>
+
+    <script>
+	    // when the page loads, set the status to online or offline
+	    function loadDemo() {
+	        // Log timing 
+	        if (navigator.onLine) {
+	            appCacheLog("Initial online status: online");
+	            return;
+	        } else {
+	            appCacheLog("Initial online status: offline");
+	            return;
+	        }
+	    }
+
+	    // add listeners on page load and unload
+	    window.addEventListener("load", loadDemo, true);
+
+		var counter = 1;
+
+		appCacheLog = function() {
+		    var p = document.createElement("p");
+		    var message = Array.prototype.join.call(arguments, " ");
+		    p.innerHTML = message;
+		    document.getElementById("info").appendChild(p);
+		}
+
+		// log each of the events fired by window.applicationCache
+		window.applicationCache.onchecking = function(e) {
+		    appCacheLog("Checking for updates");
+		}
+
+		window.applicationCache.onnoupdate = function(e) {
+		    appCacheLog("No updates found");
+		}
+
+		window.applicationCache.onupdateready = function(e) {
+		    appCacheLog("Update complete");
+		}
+
+		window.applicationCache.onobsolete = function(e) {
+		    appCacheLog("Cache obsolete");
+		}
+
+		window.applicationCache.ondownloading = function(e) {
+		    appCacheLog("Downloading updates");
+		}
+
+		window.applicationCache.oncached = function(e) {
+		    appCacheLog("Cached");
+		}
+
+		window.applicationCache.onerror = function(e) {
+		    appCacheLog("ApplicationCache error");
+		}
+
+		window.applicationCache.onprogress = function(e) {
+		    appCacheLog("Progress: downloaded file " + counter);
+		    counter++;
+		}
+
+		window.addEventListener("online", function(e) {
+		    appCacheLog("You are online");
+		}, true);
+
+		window.addEventListener("offline", function(e) {
+		    appCacheLog("You are offline");
+		}, true);
+
+		// Convert applicationCache status codes into messages
+		showCacheStatus = function(n) {
+		    statusMessages = ["Uncached","Idle","Checking","Downloading","Update Ready","Obsolete"];
+		    return statusMessages[n];
+		}
+
+		onload = function(e) {
+		    // Check for required browser features
+		    if (!window.applicationCache) {
+		        appCacheLog("HTML5 offline web applications (ApplicationCache) are not supported in your browser.");
+		        return;
+		    }
+
+		    appCacheLog("Initial AppCache status: " + showCacheStatus(window.applicationCache.status));
+
+		}
+
+</script>
+</body>
+</html>
