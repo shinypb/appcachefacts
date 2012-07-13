@@ -574,6 +574,7 @@ figure {
 
 figcaption {
 	text-align:center;
+	font-size: 1.5em;
 	color: #73B300;
 	margin: 10px;
 }
