@@ -25,7 +25,7 @@ img/network.png
 img/404.png
 img/fallback.png
 # https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png
-# http://www.google-analytics.com/ga.js
+
 
 # misc
 humans.txt
@@ -35,3 +35,4 @@ FALLBACK:
 
 NETWORK:
 network.html
+http://www.google-analytics.com/ga.js
