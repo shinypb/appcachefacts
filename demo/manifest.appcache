@@ -26,12 +26,11 @@ img/404.png
 img/fallback.png
 # https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png
 
-
 # misc
 humans.txt
 
 FALLBACK:
-/ fallback.html
+/ /fallback.html
 
 NETWORK:
 network.html
