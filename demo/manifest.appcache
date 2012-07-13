@@ -30,7 +30,7 @@ img/fallback.png
 humans.txt
 
 FALLBACK:
-/ /fallback.html
+/ /demo/fallback.html
 
 NETWORK:
 network.html
