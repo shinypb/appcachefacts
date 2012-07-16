@@ -1,0 +1,469 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Google IO 2012</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <!-- <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css"> -->
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+
+
+
+
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+
+
+  <slide>
+    <hgroup>
+      <h2>Let's Get Started!</h2>
+    </hgroup>
+    <article id="who">
+      <span class="build"><p class="avatar rounded"></p></span>
+      <img style="padding-bottom:10px;" src="images/peterlubbers.jpg">
+      
+      <p>Peter Lubbers, Program Manager, Google Chrome</p>
+      
+      <p style="margin-top:2em;">
+          <img src="images/gprofile_button-44.png" width="44" height="44"> <a rel="author" href="https://plus.google.com/u/0/112811650518962267774">+Peter Lubbers</a>
+      </p>
+      <p>
+        <img src="images/twitter_newbird_blue.png" width="44" height="58"> <a rel="author" href="https://twitter.com/peterlubbers">@peterlubbers</a>
+      </p>
+
+<!-- San Francisco HTML5 User Group: <a href="https://twitter.com/sfhtml5/">@sfhtml5</a> -->
+
+    </article>
+  </slide>
+
+
+ <slide>
+    <hgroup>
+      <h2>San Francisco HTML5 User Group</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/sfhtml5.png" alt="@SFHTML5" title="Description" class="reflect">
+      <footer class="source"><span>Join today: <a href="http://sfhtml5.org/"><abbr title="sfhtml5.org">sfhtml5.org</abbr></a></span></footer>
+    </article>
+  </slide>
+
+
+
+  <slide>
+    <hgroup>
+      <h2>Agenda</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>About Offline Apps and ApplicationCache</li>
+        <li>AppCache Basics</li>
+        <li>Demo Time</li>
+        <li>Questions and Answers</li>
+      </ul>
+      <p class="red">Pay attention, win prizes!</p>
+      <img src="images/apress-book.png">
+    </article>
+  </slide>
+
+
+
+  <slide>
+    <hgroup>
+      <h2>HTML5 Feature Areas</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/html5-badge.png" alt="HTML5 Feature Areas" title="Description" class="reflect">
+      <footer class="source"><span>HTML5 Logo and Badges by <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a></span></footer>
+    </article>
+  </slide>
+
+
+
+  <slide>
+    <hgroup>
+      <h2>HTML5 Offline and Storage</h2>
+    </hgroup>
+    <article>
+      <img src="images/offline.png" alt="Offline Feature Area">
+      <ul>
+        <li>File Storage</li>
+        <ul>
+          <li>Browser Cache</li>
+          <li><strong>Application Cache</strong></li>
+        </ul>
+        <li>Data Storage</li>
+        <ul>
+          <li>Cookies</li>
+          <li>Session Storage</li>
+          <li>Local Storage</li>
+          <li>IndexedDB</li>
+      </ul>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Using ApplicationCache</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Offline use cases:</li>
+        <ul>
+          <li>Air travel</li>
+          <li>Remote areas</li>
+          <li>Intermittent disconnects (tunnel/subway)</li>
+        </ul>
+
+        <li>Use Application Cache</li>
+        <ul>
+          <li>Browser cache is not reliable for complete offline</li>
+          <li>Fetch resources that have not yet been visited</li>
+          <li>Speeds up content delivery</li>
+        </ul>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Web Apps that Use ApplicationCache</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/angrybirds.png" alt="Angry birds" title="Description" class="reflect">
+      <footer class="source">Angry Birds (Chrome Web Store)</footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Web Apps that Use ApplicationCache</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/ft.PNG" alt="Financial Times" title="Description" class="reflect">
+      <footer class="source">Financial Times Web App <a href="http://www.ft.com">ft.com</a></footer>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Web Apps that Use ApplicationCache</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/gmail.png" alt="Gmail" title="Description" class="reflect">
+      <footer class="source">Offline Gmail</footer>
+    </article>
+  </slide>
+
+
+
+
+ <slide>
+    <hgroup>
+      <h2>Browser Support</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/browsers.PNG" alt="Browser Support" title="Description" class="reflect">
+      <footer class="source">Browser support info: <a href="http://caniuse.com/#search=offline">caniuse.com</a></footer>
+    </article>
+  </slide>
+
+  <slide class="segue">
+    <article class="flexbox vcenter auto-fadein">
+      <q style="font-size: 60px;">ApplicationCache Basics</q>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>ApplicationCache Basics</h2>
+      <h3>Create a manifest file (*.appcache)</h3>
+    </hgroup>
+    <article class="smaller">
+      
+      <pre class="prettyprint" data-lang="Manifest">
+CACHE MANIFEST
+# version 2011-07-012 06:06:44
+
+CACHE:
+# html files
+cache.html
+index.html
+# css files
+css/style.css
+# image files
+apple-touch-icon.png
+favicon.ico
+img/fallback.png
+
+FALLBACK:
+/ /demo/fallback.html
+
+NETWORK:
+*
+
+# Although it was removed from the spec, some browsers still require server configuration (mime type for *.appcache)
+</pre>
+    </article>
+  </slide>
+
+  <!--
+  CONFIG:
+# Apache mimetypeconfiguration# APACHE_HOME/conf/mime.typestext/cache-manifest manifestCopyright © 2010 -Kaazing Corporation. All rights reserved.mime.typesFileApache Configuration# Apache mimetypeconfigurationAddTypetext/cache-manifest .manifes
+-->
+
+
+
+  <slide>
+    <hgroup>
+      <h2>ApplicationCache Basics</h2>
+      <h3>Add manifest attribute to the html element</h3>
+    </hgroup>
+    <article>
+      
+      <pre class="prettyprint" data-lang="html">
+&lt;doctype html&gt;
+&lt;html class="no-js" lang="en" manifest="manifest.appcache"&gt;
+</pre>
+    </article>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/google_developers_icon_128.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+        ApplicationCache is a Douchebag.
+      </q>
+      <div class="author">
+        Jake Archibald<br>
+        Lanyard
+      </div>
+    </article>
+  </slide>
+
+
+
+    <slide>
+    <hgroup>
+      <h2>ApplicationCache Sequence of Events</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Navigate to URL in browser</li>
+        <li>Browser checks if there already an ApplicationCache for the origin</li>
+        
+        <ul>
+          <li>No: Download initial version of the ApplicationCache</li>
+          <li>Yes: Browser loads resources from ApplicationCache and checks if the manifest has changed (on the server)</li>
+            <ul>
+              <li>No: Done</li>
+              <li>Yes: Download new version of the ApplicationCache</li>
+            </ul> 
+        </ul>
+        <li>Important: ApplicationCache does not auto-refresh a page (you can manually refresh or programatically, based on ApplicationCache events)</li>
+      </ul>
+    </article>
+  </slide>
+
+
+
+<slide>
+    <hgroup>
+      <h2>ApplicationCache Events</h2>
+    </hgroup>
+    <article >
+      
+      <pre class="prettyprint" data-lang="javascript">
+// log each of the events fired by window.applicationCache
+window.applicationCache.onchecking = function(e) {log("Checking for updates");}
+window.applicationCache.onnoupdate = function(e) {log("No updates");}
+window.applicationCache.onupdateready = function(e) {log("Update ready");}
+window.applicationCache.onobsolete = function(e) {log("Obsolete");}
+window.applicationCache.ondownloading = function(e) {log("Downloading");}
+window.applicationCache.oncached = function(e) {log("Cached");}
+window.applicationCache.onerror = function(e) {log("Error");}
+
+//Log each file
+window.applicationCache.onprogress = function(e) {log("checking");}
+  appCacheLog("Progress: downloaded file " + counter);
+  counter++;
+}
+</pre>
+    </article>
+  </slide>
+
+
+<slide>
+    <hgroup>
+      <h2>Online and Offline Events</h2>
+    </hgroup>
+    <article>
+      
+      <pre class="prettyprint" data-lang="javascript">
+//Online and Offline status detection
+window.addEventListener("online", function(e) {
+  log("You are online");
+}, true);
+window.addEventListener("offline", function(e) {
+  log("You are offline");
+}, true);
+</pre>
+    </article>
+  </slide>
+
+
+
+
+  <slide class="segue">
+    <article class="flexbox vcenter auto-fadein">
+      <q style="font-size: 60px;">It's demo time!</q>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Demo</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/demo.PNG" alt="Demo" title="Description" class="reflect">
+      <footer class="source">Demo: <a href="http://appcachefacts.info/demo/">appcachefacts.info/demo/</a></footer>
+    </article>
+  </slide>
+
+
+
+  <slide>
+    <hgroup>
+      <h2>Tips and Tricks</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Works well with local storage or IndexedDB</li>
+        <li>Use the '*.appcache' extension for manifest files</li>
+        <li>Don't ever cache the manifest file!</li>
+        <li>Automatically generate the manifest (use <a href="http://html5boilerplate.com/">HTML5 Boilerplate</a>)</li>
+        <li>To support older browsers, configure your web server to serve manifest files with the 'text/cache-manifest' mime type</li>
+        <li>Use developer tools to analyze problems</li>
+        <li>Clear the cache before you retest</li>
+        <li>Quota and quota management varies per browser</li>
+
+        <ul>
+          <li>about:cache</li>
+          <li>chrome:appcache-internals</li>
+        </ul>
+      </ul>
+    </article>
+  </slide>
+
+
+
+  <slide>
+    <hgroup>
+      <h2>Cache Manifest Validation Tool</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/tool.PNG" alt="Financial Times" title="Description" class="reflect">
+      <footer class="source">Cache Manifest Validator <a href="https://chrome.google.com/webstore/detail/lomdbpjnhnphfhgmaeedafmnfeikkcfo?utm_source=chrome-ntp-icon">Chrome Web Store</a></footer>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>More Information</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>The facts: <a href="http://appcachefacts.info">appcachefacts.info</a></li>
+        <li>The demo: <a href="http://appcachefacts.info/demo">appcachefacts.info/demo</a></li>
+        <li>Slideshare: <a href="http://www.slideshare.net/peterlubbers/using-html5-application-cache-to-create-offline-web-applications">#SFHTML5 User Group presentation</a> </li>
+        <li>Join the San Francisco HTML5 User Group: <a href="https://twitter.com/sfhtml5/">@sfhtml5</a></li>
+      </ul>
+    </article>
+  </slide>
+
+    <slide class="segue">
+    <article class="flexbox vcenter auto-fadein">
+      <q style="font-size: 60px;">Questions?</q>
+    </article>
+  </slide>
+
+   
+  
+
+  <slide class="thank-you-slide segue nobackground">
+    <aside class="gdbar right"><img src="images/google_developers_icon_128.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>Thank You!</h2>
+    </article>
+    <p class="auto-fadein" data-config-contact>
+      <!-- populated from slide_config.json -->
+    </p>
+  </slide>
+
+
+
+
+  <slide class="logoslide dark nobackground">
+    <article class="flexbox vcenter">
+      <span><img src="images/google_developers_logo_white.png"></span>
+    </article>
+  </slide>
+
+
+
+  <slide class="backdrop"></slide>
+
+
+
+</slides>
+
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
