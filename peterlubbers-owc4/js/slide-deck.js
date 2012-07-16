@@ -314,7 +314,7 @@ SlideDeck.prototype.loadConfig_ = function(config) {
   }
 
   if (settings.title) {
-    document.title = settings.title.replace(/<br\/?>/, ' ') + ' - Google IO 2012';
+    document.title = settings.title.replace(/<br\/?>/, ' ') + ' - Open Web Camp IV ApplicationCache Presentation';
     document.querySelector('[data-config-title]').innerHTML = settings.title;
   }
 
