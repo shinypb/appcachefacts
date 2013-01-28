@@ -125,7 +125,7 @@
           </div>
         </li>
         <li>
-          Appcache manifests have three optional sections: <code>CACHE</code>, <code>NETWORK</code>, and <code>FALLBACK</code>.
+          Appcache manifests have four optional sections: <code>CACHE</code>, <code>NETWORK</code>, <code>FALLBACK</code>, and <code>SETTINGS</code>.
           <div class="details">
             <p>The <code>CACHE</code> section lists all resources that should be downloaded and stored locally. The browser will
             begin downloading these in the background as soon as the page has loaded. If any are already in the browser's cache,
@@ -136,6 +136,7 @@
             <p>If you want to allow arbitrary URLs to be accessed (scripts, stylesheets, API calls, anything), include <code>*</code>, <code>http://*</code> and <code>https://*</code> in this section. (Chrome and Safari respect the <code>*</code>; Firefox needs the <code>http://*</code> and <code>https://*</code>.)</p>
             <p>The <code>FALLBACK</code> section lists replacements for network URLs to be used when the browser is offline or the
             remote server is unavailable.</p>
+            <p>The <code>SETTINGS</code> specifies settings for appcache behaviour. Currently, the only available setting is <code>prefer-online</code>, which indicates that cached data should not be used when the browser has an active internet connection. Supported in Firefox 14+ and Opera 12+.
           </div>
         </li>
         <li>
@@ -216,7 +217,7 @@ CACHE
 
     <section id="footer">
       <p>
-        &copy; 2012 <a href="https://twitter.com/shinypb">Mark Christian</a>, <a href="https://twitter.com/ded">Dustin Diaz</a>, and <a href="https://twitter.com/peterlubbers">Peter Lubbers</a>. License: <a href="http://creativecommons.org/licenses/by/3.0/">CC Attribution 3.0</a>. Patches: <a href="https://github.com/shinyplasticbag/appcachefacts">GitHub</a>.
+        &copy; 2013 <a href="https://twitter.com/shinypb">Mark Christian</a> &amp; <a href="https://twitter.com/peterlubbers">Peter Lubbers</a>. License: <a href="http://creativecommons.org/licenses/by/3.0/">CC Attribution 3.0</a>. Patches welcome on <a href="https://github.com/shinypb/appcachefacts">GitHub</a>.
       </p>
     </section>
   </body>
