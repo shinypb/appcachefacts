@@ -174,7 +174,7 @@ CACHE
               <p>If you'd like, you can listen for the <code>updateready</code> event to detect this and prompt the
               user to reload the page:</p>
               <p><pre>if (window.applicationCache) {
-    applicationCache.addEventListener('updateready', function() {
+    window.applicationCache.addEventListener('updateready', function() {
         if (confirm('An update is available. Reload now?')) {
             window.location.reload();
         }
