@@ -97,6 +97,11 @@
       em {
         color: red;
       }
+      
+      #tweet {
+        position: absolute;
+        margin-left: 20px;
+      }
 
     </style>
     <script type="text/javascript">
@@ -110,9 +115,17 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
     </script>
+    <script type="text/javascript">
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+    </script>
   </head>
   <body>
-    <h1 id="title">Appcache Facts</h1>
+    <h1 id="title">
+      Appcache Facts
+      <span id="tweet">
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://appcachefacts.info/">Tweet</a>
+      </span>  
+    </h1>
     <p id="tagline">The application cache is a poorly understood part of the HTML5 specification with a lot of potential. Let's get rid of
        some of the confusion and make the web a faster place.</p>
 
